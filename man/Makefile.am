@@ -8,5 +8,3 @@ dist_man_MANS += mm-intermittent.1
 dist_man_MANS += mm-throughput-graph.1
 dist_man_MANS += mm-delay-graph.1
 dist_man_MANS += mm-meter.1
-dist_man_MANS += mm-webrecord.1
-dist_man_MANS += mm-webreplay.1
