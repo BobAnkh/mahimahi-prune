@@ -6,6 +6,12 @@ a web performance measurement toolkit
 
 See [origin repo](https://github.com/ravinet/mahimahi) or [official website](http://mahimahi.mit.edu/) for more information
 
+## Installation for Ubuntu
+
+```bash
+sudo apt update -y && sudo apt-get install autotools-dev autoconf libtool libssl-dev xcb libxcb-composite0-dev libxcb-present-dev libcairo2-dev libpango1.0-dev dnsmasq -y
+```
+
 ## Credits
 
 - [ravinet](https://github.com/ravinet) for creating mahimahi
