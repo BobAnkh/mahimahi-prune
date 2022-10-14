@@ -31,6 +31,11 @@ mm_meter_SOURCES = meter.cc meter_queue.hh meter_queue.cc
 mm_meter_LDADD = -lrt ../util/libutil.a ../packet/libpacket.a ../graphing/libgraph.a $(XCBPRESENT_LIBS) $(XCB_LIBS) $(PANGOCAIRO_LIBS)
 mm_meter_LDFLAGS = -pthread
 
+bin_PROGRAMS += mm-file-delay
+mm_file_delay_SOURCES = filedelayshell.cc file_delay_queue.hh file_delay_queue.cc
+mm_file_delay_LDADD = -lrt ../util/libutil.a ../packet/libpacket.a
+mm_file_delay_LDFLAGS = -pthread
+
 install-exec-hook:
 	chown root $(DESTDIR)$(bindir)/mm-delay
 	chmod u+s $(DESTDIR)$(bindir)/mm-delay
@@ -44,3 +49,5 @@ install-exec-hook:
 	chmod u+s $(DESTDIR)$(bindir)/mm-link
 	chown root $(DESTDIR)$(bindir)/mm-meter
 	chmod u+s $(DESTDIR)$(bindir)/mm-meter
+	chown root $(DESTDIR)$(bindir)/mm-file-delay
+	chmod u+s $(DESTDIR)$(bindir)/mm-file-delay

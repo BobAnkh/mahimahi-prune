@@ -138,54 +138,18 @@ and analyzes the resulting performance. See
 Displays an animated live plot of the transfer rate entering or leaving the container.
 .RE
 
-.SH RECORD AND REPLAY WEBSITES
+.SH Variable delay from file
 
-.SY mm-webrecord
-.I directory
+.SY mm-file-delay
+.I delay_file
+.I time_resolution
 .RI [ command... ]
 .YS
 .
 .IP ""
 .RS
 
-Transparently proxies outgoing HTTP and HTTPS connections, saving the
-requests, corresponding responses, and IP address of each Web
-server contacted in the given \fIdirectory\fR. \fBmm-webrecord\fP
-uses a self-signed TLS certificate in its HTTPS proxy, causing typical
-Web browsers to reject it. For testing or debugging purposes, this
-behavior can usually be turned off, e.g.: with the
-\fB--no-check-certificate\fP option to
-.BR wget (1)
-or the \fB--ignore-certificate-errors\fP option to
-.BR chromium-browser (1).
-.RE
-
-.SY mm-webreplay
-.I directory
-.RI [ command... ]
-.YS
-.
-.IP ""
-.RS
-
-Replays a saved session from a previous run of \fBmm-webrecord\fR.
-Unlike most mahimahi tools, the \fBmm-webreplay\fP container
-does not have a network connection to the outside world. Instead,
-it has dummy network interfaces bound to each IP address on which a
-Web server in the saved session had answered a request. \fPmm-webreplay\fR runs an
-.BR apache2 (8)
-Web server bound to each such IP address inside the container. Each
-Web server emulates the corresponding server from the saved
-session. When receiving a request that matches one in the \fIdirectory\fR, the
-corresponding apache2 replies with the same reply as previously
-captured.
-
-\fBmm-webreplay\fP can be used to measure the performance of Web
-browsers on complex websites and the effect of changes in Web
-protocols (e.g. HTTP, HTTP/2, SPDY, QUIC). Unlike tools like web-page-replay,
-\fBmm-webreplay\fP preserves the sharded structure of a website, binds to
-the actual IP addresses that the real website used, and serves requests from
-real Web servers.
+The default time-resolution is 1 ms. The delay_file specifies the delay (in ms) at time-steps of the time resolution.
 .RE
 
 .SH ENVIRONMENT
