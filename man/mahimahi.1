@@ -18,13 +18,11 @@
 .SH NAME
 \fBmahimahi\fP \- lightweight, composable network-emulation tools
 
-link emulation: \fBmm-delay\fP, \fBmm-loss\fP, \fBmm-intermittent\fP, \fBmm-onoff\fP, \fBmm-link\fP
+link emulation: \fBmm-delay\fP, \fBmm-loss\fP, \fBmm-intermittent\fP, \fBmm-onoff\fP, \fBmm-link\fP, \fBmm-file-delay\fP
 
 analysis scripts: \fBmm-throughput-graph\fP, \fBmm-delay-graph\fP
 
 observation: \fBmm-meter\fP
-
-record and replay multi-origin websites: \fBmm-webrecord\fP, \fBmm-webreplay\fP
 
 .SH DESCRIPTION
 \fBmahimahi\fP is a suite of user-space tools for network emulation and analysis.
@@ -189,26 +187,6 @@ PING 100.64.0.1 (100.64.0.1) 56(84) bytes of data.
 --- 100.64.0.1 ping statistics ---
 10 packets transmitted, 8 received, 20% packet loss, time 8999ms
 rtt min/avg/max/mdev = 100.910/101.009/101.092/0.279 ms
-.EE
-.RE
-
-To record a page load from \fIwww.nytimes.com\fR:
-
-.IP ""
-.RS
-.EX
-\fB$\fR mm\-webrecord /tmp/nytimes chromium-browser \-\-ignore\-certificate\-errors \-\-user\-data\-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com
-.EE
-
-The use of \fI\-\-user\-data\-dir=/tmp/nonexistent$(date +%s%N)\fR is to prevent the browser from reusing an existing chromium-browser process.
-.RE
-
-To make Chrome retrieve the saved website over a delayed, lossy link whose throughput is limited to 1 full-sized packet per millisecond:
-
-.IP ""
-.RS
-.EX
-\fB$\fR mm\-webreplay /tmp/nytimes mm\-delay 50 mm\-loss uplink 0.1 mm-link <(echo 1) <(echo 1) \-\- chromium-browser \-\-ignore\-certificate\-errors \-\-user\-data\-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com
 .EE
 .RE
 
