@@ -40,6 +40,12 @@ if test "$DNSMASQ" = "no"; then
 fi
 AC_DEFINE_UNQUOTED([DNSMASQ], ["$DNSMASQ"], [path to dnsmasq])
 
+AC_ARG_ENABLE([altaddr],
+  AS_HELP_STRING([--enable-altaddr=yes], [Enable using alternate address space]),,
+  [enable_altaddr=yes])
+
+AM_CONDITIONAL([ENABLE_ALTADDR], [test x$enable_altaddr = xyes])
+
 # Checks for libraries.
 PKG_CHECK_MODULES([libssl], [libcrypto libssl])
 PKG_CHECK_MODULES([XCB], [xcb])
